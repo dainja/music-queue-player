@@ -1,0 +1,47 @@
+<div class="ui divided items playlist-container">
+    <div
+        *ngFor="let video of videos"
+        class="item"
+        style="padding: 20px 15px !important"
+    >
+        <div
+            class="image"
+            style="width: 100px;"
+        >
+            <img [src]="video.thumbnail">
+        </div>
+        <div class="content">
+            <span
+                class="date text-white"
+                style="font-weight: bolder;"
+            >
+                <a style="padding: 1em 0 2em 0;">{{ video.title }}</a>
+            </span>
+            <div class="meta">
+
+                <a
+                    [href]="video.channelUrl"
+                    target="_blank"
+                    class="ui secondary text-white"
+                >{{ video.channelTitle }}</a>
+
+                <span
+                    class="ui date"
+                    style="font-weight: bolder;"
+                >{{ video.publishedAt | date:'mediumDate' }}</span>
+            </div>
+
+            <a
+                [href]="video.videoUrl"
+                target="_blank"
+                class="extra content floated right"
+            >
+                <button class="ui right floated tiny red right labeled icon button">
+                    <i class="external alternate icon"></i>
+                    Watch
+                </button>
+            </a>
+        </div>
+
+    </div>
+</div>

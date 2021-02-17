@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Video } from "../../../shared/models/search.interface";
 
+
 @Component({
   selector: 'app-search-list',
   templateUrl: './search-list.component.html',

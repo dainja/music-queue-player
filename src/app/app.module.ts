@@ -9,7 +9,9 @@ import { MaterialModule } from './material.module';
 import { SearchInputComponent } from './search/components/search-input/search-input.component';
 import { SearchListComponent } from './search/components/search-list/search-list.component';
 import { SearchContainerComponent } from './search/container/search-container/search-container.component';
-
+import { YouTubePlayerModule } from '@angular/youtube-player';
+import { MusicPlayerComponent } from './music-player/music-player.component';
+import { NgxY2PlayerModule } from "ngx-y2-player";
 
 
 @NgModule({
@@ -17,14 +19,17 @@ import { SearchContainerComponent } from './search/container/search-container/se
     AppComponent,
     SearchInputComponent,
     SearchListComponent,
-    SearchContainerComponent
+    SearchContainerComponent,
+    MusicPlayerComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    YouTubePlayerModule,
+    NgxY2PlayerModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

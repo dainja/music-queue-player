@@ -31,16 +31,14 @@
                 >{{ video.publishedAt | date:'mediumDate' }}</span>
             </div>
 
-            <a
-                [href]="video.videoUrl"
-                target="_blank"
-                class="extra content floated right"
+
+            <button
+                (click)="add(video.videoId, video.title)"
+                class="ui right floated tiny red right labeled icon button"
             >
-                <button class="ui right floated tiny red right labeled icon button">
-                    <i class="external alternate icon"></i>
-                    Watch
-                </button>
-            </a>
+                <i class="external alternate icon"></i>
+                Watch
+            </button>
         </div>
 
     </div>

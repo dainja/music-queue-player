@@ -1,8 +1,12 @@
 <youtube-player
-    videoId="dQw4w9WgXcQ"
+    #player
+    *ngIf="currentTrack"
+    [videoId]="currentTrack.id"
     height="320px"
     width="320px"
     class="centered"
+    [playerVars]="{autoplay: 1}"
+    (stateChange)="onStateChange($event)"
 ></youtube-player>
 
 <div class="ui divided items playlist-container">

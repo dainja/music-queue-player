@@ -18,17 +18,21 @@ export class TrackService {
 
   }
 
-  getNextTrack() {
+  nextTrack() {
     if (this.tracks.length > 0) {
       return this.tracks.shift()
     }
-
   }
 
   getPlaylist() {
     return this.tracks.slice(0, 10)
   }
 
+  getCurrentTrack() {
+    if (this.tracks.length > 0) {
+      return this.tracks[ 0 ]
+    }
+  }
 
   constructor() { }
 }

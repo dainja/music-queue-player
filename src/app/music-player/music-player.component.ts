@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { YouTubePlayer } from '@angular/youtube-player';
 import { Video } from '../shared/models/search.interface';
 import { TrackModel } from "../shared/models/track.interface";
 import { TrackService } from '../shared/services/track.service';
@@ -12,14 +13,13 @@ import { TrackService } from '../shared/services/track.service';
 })
 export class MusicPlayerComponent implements OnInit {
 
+  @ViewChild('player') player: YouTubePlayer;
   tracks: TrackModel[] = []
   currentTrack: TrackModel
 
   constructor(private trackService: TrackService) {
 
   }
-
-
 
   ngOnInit() {
     const tag = document.createElement('script');
@@ -34,8 +34,25 @@ export class MusicPlayerComponent implements OnInit {
   ngDoCheck() {
 
     this.tracks = this.trackService.getPlaylist()
-    console.log(this.tracks);
+    this.currentTrack = this.trackService.getCurrentTrack()
 
   }
 
+  onStateChange({ data }) {
+
+    if (data === 0) { //if track has ended (0) play next
+
+      this.nextTrack()
+    }
+
+  }
+
+  nextTrack() {
+    this.trackService.nextTrack();
+    setTimeout(() => { // Wait for new track to load
+      if (this.currentTrack) {
+        this.player.playVideo()
+      }
+    }, 100)
+  }
 }

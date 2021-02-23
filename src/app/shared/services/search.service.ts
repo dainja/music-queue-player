@@ -26,7 +26,7 @@ export class SearchService {
     const contentDetails: any = await this.http.get(videoURL).toPromise();
 
     const result = videos.items.map((video, index) => {
-      video.duration = contentDetails.items[index].contentDetails.duration
+      video.duration = this.formatTime(contentDetails.items[index].contentDetails.duration)
       return video
     })
 
@@ -36,7 +36,15 @@ export class SearchService {
 
   }
 
-
+  formatTime(time) {
+    const seconds = this.convertYtTime(time)
+    let convertedDuration = new Date(seconds * 1000).toISOString().substr(11, 8)
+    if (convertedDuration.startsWith('00:'))
+  {     convertedDuration = convertedDuration.substring(3)
+    console.log(convertedDuration);
+     }
+    return convertedDuration
+  }
   convertYtTime(duration) {
     var total = 0;
     var hours = duration.match(/(\d+)H/);

@@ -1,8 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-
-import { map } from 'rxjs/operators';
 import { TrackModel } from '../models/track.interface';
 
 
@@ -19,51 +16,25 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  getVideos(query: string): Observable<any> {
+  async getVideos(query: string): Promise<any> {
+    // Get videos from search
     const url = `${this.API_URL}?q=${query}&key=${this.API_TOKEN}&part=snippet&type=video&maxResults=3`;
+    const videos: any = await this.http.get(url).toPromise();
+    const ids = videos.items.map(item => item.id.videoId).join(',');
 
-    // const videoURL = `https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id=${id}&key=${this.API_TOKEN}`;
+    const videoURL = `https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id=${ids}&key=${this.API_TOKEN}`;
+    const contentDetails: any = await this.http.get(videoURL).toPromise();
 
+    const result = videos.items.map((video, index) => {
+      video.duration = contentDetails.items[index].contentDetails.duration
+      return video
+    })
 
+    console.log('result', result)
 
-    // försökte skapa en ny http get för att plocka VIDEO id, skicka en second call till en annan länk se nedan
-    // const videoURL = `https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id=${id}&key=${this.API_TOKEN}`;
-    // denna callen ger info om duration som kan konverteras med koden längre ner
-    // maxade min quota mitt i skiten xD
-
-    // let array = [];
-
-    // console.log(this.http.get(url)
-    //   .subscribe((response: any) => {
-
-    //     array.push(response.items)
-
-    //     console.log(array);
-
-    //     console.log(response.items);
-
-    //     for (let i = 0; i < array.length; i++) {
-    //       const element = array[ i ];
-    //       console.log(element);
-
-
-    //     }
-
-
-
-
-    //   }));
-
-
-    return this.http.get(url)
-      .pipe(
-        map((response: any) => response.items)
-      )
+    return result;
 
   }
-
-
-
 
 
   convertYtTime(duration) {
@@ -77,3 +48,4 @@ export class SearchService {
     return total;
   }
 }
+

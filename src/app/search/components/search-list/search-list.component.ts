@@ -20,4 +20,9 @@ export class SearchListComponent implements OnInit {
   add(id, title) {
     this.trackService.addTrack(id, title)
   }
+
+
+  // onReady() {
+  //   this.trackService.ready()
+  // }
 }

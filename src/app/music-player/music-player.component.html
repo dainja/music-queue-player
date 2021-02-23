@@ -5,9 +5,18 @@
     height="320px"
     width="320px"
     class="centered"
-    [playerVars]="{autoplay: 1}"
-    (stateChange)="onStateChange($event)"
+    suggestedQuality="highres"
+    [playerVars]="{autoplay: 1, controls: 1}"
+    (stateChange)="onStateChange($event);"
 ></youtube-player>
+<!--
+    (ready)="onReady()"
+    alternative use of ready inside above iframe
+    -->
+
+
+
+
 
 <div class="ui divided items playlist-container">
     <div

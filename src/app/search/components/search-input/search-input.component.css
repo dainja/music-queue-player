@@ -1,0 +1,50 @@
+.row {
+    margin: 0 !important;
+}
+
+.searchbar {
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 40px;
+    background-color: #bcac9d;
+    border-radius: 30px;
+    padding: 10px;
+    border: 1px solid #fff;
+}
+
+.search-input {
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color: transparent;
+    line-height: 20px;
+    width: 450px;
+    caret-color: #BFDCFF;
+    padding: 0 10px;
+}
+
+.search-input::placeholder {
+    color: #fff;
+}
+
+.search-icon {
+    display: flex;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    padding: 0 10px;
+    padding-top: 2px;
+}
+
+.search-container {
+    position: absolute;
+    top: 90%;
+    /* position the top  edge of the element at the middle of the parent */
+    left: 50%;
+    /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%);
+    /* This is a shorthand of */
+    z-index: 1000;
+}

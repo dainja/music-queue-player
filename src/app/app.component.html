@@ -1,39 +1,89 @@
-<div
-  class="ui centered grid"
-  style="margin-top: 3rem;"
->
-  <div class="fourteen wide column">
-    <h1 class="ui centered aligned header">
-      <span
-        style="vertical-align: middle;"
-        class="text-white"
-      >Get the party started </span>
-      <img
-        class="tiny"
-        src="/assets/yt.png"
-        alt=""
-        style="width: 2.5rem"
-      >
-    </h1>
+<div class="container my-5 px-0">
+  <div class="col px-0">
+    <div class="row">
+      <div class="top-container text-white">
+
+        <div class="row player">
+          <div class="bg1"></div>
+          <div class="bg2"></div>
+          <div class="bg3"></div>
+          <div class="col artist-container">
+            <div class="artist">
+              <h1 class="artist-name">Kendrick Lamar</h1>
+            </div>
+            <div class="title">
+              <p class="artist-title">HUMBLE</p>
+            </div>
+
+
+            <div class="middle-control-panel d-flex mb-4">
+              <div class="repeat small d-flex">
+                <img
+                  src="../assets/svg/refresh.svg"
+                  alt=""
+                >
+              </div>
+              <div class="play medium">
+                <img
+                  src="../assets/svg/play-button.svg"
+                  alt=""
+                >
+              </div>
+              <!-- <div class="pause small">
+                    <img
+                      src="img/music/svg/pause.svg"
+                      alt=""
+                    >
+                  </div> -->
+              <div class="next tiny d-flex"><img
+                  src="../assets/svg/next.svg"
+                  alt=""
+                ></div>
+              <div class="volume small d-flex"> <img
+                  src="../assets/svg/speaker-filled-audio-tool.svg"
+                  alt=""
+                ></div>
+            </div>
+            <div class="lower-control-panel ">
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped"
+                  role="progressbar"
+                  style="width: 10%"
+                  aria-valuenow="10"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="col">
+            other stuff
+          </div>
+
+
+        </div>
+        <app-search-input (search)="handleSearch($event)"></app-search-input>
+
+
+      </div>
+    </div>
+    <!-- insert searchlist here -->
+    <app-search-list
+      *ngIf="!loading"
+      [videos]="videos"
+    ></app-search-list>
+
+
   </div>
+
 </div>
-
-<div class="ui container two column divided grid">
-  <div class="stretched row">
-    <div class="column six wide">
-      <div class="ui segment d-flex justify-content-center">
-        <app-music-player></app-music-player>
-      </div>
-    </div>
-    <div class="column ten wide">
-
-      <app-search-container></app-search-container>
-
-
-      <div class="ui segment">
-
-      </div>
-    </div>
-
-  </div>
+<div
+  style="width: 250px; height: 250px;"
+  class="p-5"
+>
+  <app-music-player></app-music-player>
 </div>

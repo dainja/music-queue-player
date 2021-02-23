@@ -29,6 +29,8 @@ export class SearchInputComponent implements AfterViewInit {
       )
       .subscribe(value => {
         this.search.emit(value)
+
+
       })
   }
 

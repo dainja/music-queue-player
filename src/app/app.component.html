@@ -16,7 +16,7 @@
             </div>
 
 
-            <div class="middle-control-panel d-flex mb-4">
+            <!-- <div class="middle-control-panel d-flex mb-4">
               <div class="repeat small d-flex">
                 <img
                   src="../assets/svg/refresh.svg"
@@ -29,12 +29,6 @@
                   alt=""
                 >
               </div>
-              <!-- <div class="pause small">
-                    <img
-                      src="img/music/svg/pause.svg"
-                      alt=""
-                    >
-                  </div> -->
               <div class="next tiny d-flex"><img
                   src="../assets/svg/next.svg"
                   alt=""
@@ -43,18 +37,9 @@
                   src="../assets/svg/speaker-filled-audio-tool.svg"
                   alt=""
                 ></div>
-            </div>
+            </div> -->
             <div class="lower-control-panel ">
-              <div class="progress">
-                <div
-                  class="progress-bar progress-bar-striped"
-                  role="progressbar"
-                  style="width: 10%"
-                  aria-valuenow="10"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
+
 
 
             </div>
@@ -72,10 +57,70 @@
       </div>
     </div>
     <!-- insert searchlist here -->
-    <app-search-list
-      *ngIf="!loading"
-      [videos]="videos"
-    ></app-search-list>
+
+    <div class="row">
+      <div class="col playlist-container mr-2">
+        <div class="playlist">
+          <app-music-player></app-music-player>
+
+          <div class="playlist-cover">
+            <img
+              src=""
+              alt=""
+            >
+          </div>
+          <div class="playlist-controls">
+
+            <div class="repeat small">
+              <img
+                src="../assets/svg/replay.svg"
+                alt=""
+              >
+            </div>
+            <div class="play medium">
+              <img
+                src="../assets/svg/play-button.svg"
+                alt=""
+              >
+            </div>
+            <div class="next small">
+              <img
+                src="../assets/svg/rewind-button.svg"
+                alt=""
+              >
+            </div>
+            <div class="vol small">
+              <img
+                src="../assets/svg/volume.svg"
+                alt=""
+              >
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-striped"
+                role="progressbar"
+                [style.width]="trackService.progress + '%'"
+                (aria-valuenow)="trackService.progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+
+
+          <app-music-playlist></app-music-playlist>
+        </div>
+      </div>
+      <div class="col search-container">
+        <app-search-list
+          *ngIf="!loading"
+          [videos]="videos"
+        ></app-search-list>
+      </div>
+    </div>
+
 
 
   </div>
@@ -85,5 +130,6 @@
   style="width: 250px; height: 250px;"
   class="p-5"
 >
-  <app-music-player></app-music-player>
+
+
 </div>

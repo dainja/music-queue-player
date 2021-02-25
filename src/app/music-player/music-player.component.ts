@@ -18,8 +18,13 @@ export class MusicPlayerComponent implements OnInit {
   tracks: TrackModel[] = []
   currentTrack: TrackModel
   trackDuration;
+  videoWidth() {
+    return '400px'
+  }
+  videoHeight() {
+    return '225px'
+  }
 
-  ;
 
   constructor(private trackService: TrackService) {
 
@@ -35,6 +40,7 @@ export class MusicPlayerComponent implements OnInit {
 
 
     // console.log(this.formatTime(302));
+
 
 
 
@@ -65,42 +71,55 @@ export class MusicPlayerComponent implements OnInit {
     this.tracks = this.trackService.getPlaylist()
     this.currentTrack = this.trackService.getCurrentTrack()
 
+
+
   }
 
+  // funkar endast i incognito
   onStateChange({ data }) {
 
     console.log(data);
-
-
-    // varför nedan kod ligger här är för att jag endast lyckades få tag på information här, försökte skapa en funktion i track-service men fick bara undefined.
-    if (data == YT.PlayerState.PLAYING && data !== 0) {
-
-      let duration = this.player.getDuration()
-
-      let convertedDuration = this.formatTime(duration)
-
-
-
-      if (convertedDuration.substring(0, 3) == '00:') {
-        convertedDuration = convertedDuration.substring(3)
-        console.log(convertedDuration);
-
-
-      }
-
-
-      console.log(convertedDuration);
-
-
-
-
-
-    }
-
-    if (data === 0) { //if track has ended (0) play next
+    if (data === YT.PlayerState.ENDED) { //if track has ended (0) play next
 
       this.nextTrack()
     }
+
+    let mytimer;
+    if (data == YT.PlayerState.PLAYING) {
+
+
+      const playerTotalTime = this.player.getDuration();
+
+      mytimer = setInterval(() => {
+        const playerCurrentTime = this.player.getCurrentTime();
+
+        const playerTimeDifference = (playerCurrentTime / playerTotalTime) * 100;
+
+        this.trackService.setProgress(playerTimeDifference)
+
+      }, 1000);
+    } else {
+
+      clearInterval(mytimer);
+
+
+    }
+
+
+    // if (data == YT.PlayerState.PLAYING && data !== 0) {
+    //   let duration = this.player.getDuration();
+
+    //   let convertedDuration = this.formatTime(duration);
+
+    //   if (convertedDuration.substring(0, 3) == '00:') {
+    //     convertedDuration = convertedDuration.substring(3);
+    //     console.log(convertedDuration);
+    //   }
+
+    //   console.log(convertedDuration);
+    // }
+
+
 
   }
 

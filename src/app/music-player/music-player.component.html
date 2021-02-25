@@ -2,65 +2,10 @@
     #player
     *ngIf="currentTrack"
     [videoId]="currentTrack.id"
-    height="320px"
-    width="320px"
     class="centered"
+    [width]="videoWidth()"
+    [height]="videoHeight()"
     suggestedQuality="highres"
-    [playerVars]="{autoplay: 1, controls: 1}"
-    (stateChange)="onStateChange($event);"
+    [playerVars]="{autoplay: 1, controls: 0}"
+    (stateChange)="onStateChange($event)"
 ></youtube-player>
-<!--
-    (ready)="onReady()"
-    alternative use of ready inside above iframe
-    -->
-
-
-
-
-
-<div class="ui divided items playlist-container">
-    <div
-        *ngFor="let track of tracks"
-        class="item"
-        style="padding: 20px 15px !important"
-    >
-        <!-- <div
-            class="image"
-            style="width: 100px;"
-        >
-            <img [src]="video.thumbnail">
-        </div> -->
-        <div class="content">
-            <span
-                class="date"
-                style="font-weight: bolder;"
-            >
-                <a style="padding: 1em 0 2em 0;">{{ track.title }}</a>
-
-            </span>
-            <!-- <div class="meta">
-
-                <a
-                    [href]="video.channelUrl"
-                    target="_blank"
-                    class="ui secondary text-white"
-                >{{ video.channelTitle }}</a>
-
-                <span
-                    class="ui date"
-                    style="font-weight: bolder;"
-                >{{ video.publishedAt | date:'mediumDate' }}</span>
-            </div>
-
-
-            <button
-                (click)="add(video.videoId, video.title)"
-                class="ui right floated tiny red right labeled icon button"
-            >
-                <i class="external alternate icon"></i>
-                Watch
-            </button>
-        </div> -->
-
-        </div>
-    </div>

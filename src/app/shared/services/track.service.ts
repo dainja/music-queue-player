@@ -13,14 +13,17 @@ export class TrackService {
 
   private tracks: TrackModel[] = [];
 
+  progress: number = 0;
 
 
 
 
-  addTrack(id, title) {
+  addTrack(id, title, duration, thumbnail) {
     this.tracks.push({
       id,
-      title
+      title,
+      duration,
+      thumbnail
     })
 
 
@@ -34,6 +37,10 @@ export class TrackService {
     }
   }
 
+  removeTrack(index) {
+    return this.tracks.splice(index, 1)
+  }
+
   getPlaylist() {
     return this.tracks.slice(0, 10)
   }
@@ -44,6 +51,11 @@ export class TrackService {
       return this.tracks[ 0 ]
 
     }
+  }
+
+  setProgress(progress) {
+
+    this.progress = progress
   }
 
   // skulle skapa en function som plockar all data jag vill ha

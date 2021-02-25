@@ -1,0 +1,69 @@
+.track-cover {
+    width: 80px;
+    height: 65px;
+    overflow: hidden;
+}
+
+.track-cover img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin: -9% auto;
+}
+
+.remove-track {}
+
+.remove-track img {
+    width: 24px;
+}
+
+.track-details {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.track-title {
+    display: flex;
+}
+
+.track {
+    display: flex;
+    padding: 1rem;
+}
+
+.track-title div {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: 0 1rem;
+    font-weight: bold;
+}
+
+.track-controller-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000;
+}
+
+.separator:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: .25em;
+}

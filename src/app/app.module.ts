@@ -12,6 +12,7 @@ import { SearchContainerComponent } from './search/container/search-container/se
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { MusicPlayerComponent } from './music-player/music-player.component';
 import { NgxY2PlayerModule } from "ngx-y2-player";
+import { MusicPlaylistComponent } from './music-playlist/music-playlist.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { NgxY2PlayerModule } from "ngx-y2-player";
     SearchListComponent,
     SearchContainerComponent,
     MusicPlayerComponent,
+    MusicPlaylistComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Video } from './shared/models/search.interface';
 import { SearchService } from './shared/services/search.service';
+import { TrackService } from './shared/services/track.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { SearchService } from './shared/services/search.service';
 export class AppComponent {
   title = 'party-queue';
 
+  @Input() ytplayer: YT.Player
 
 
 
@@ -17,7 +19,8 @@ export class AppComponent {
   loading = false;
   videos: Video[] = []
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService,
+    public trackService: TrackService) { }
 
   async handleSearch(inputValue: string) {
     this.loading = true;
@@ -39,4 +42,6 @@ export class AppComponent {
     this.inputTouched = true;
     this.loading = false;
   }
+
+
 }

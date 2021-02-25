@@ -89,21 +89,57 @@
 }
 
 .progress {
-    height: 0.2rem !important;
-    width: 250px;
+    height: 0.5rem !important;
+    width: 90%;
 }
 
 .tiny img {
-    width: 16px;
+    width: 26px;
     margin: 0 .75rem;
 }
 
 .small img {
-    width: 22px;
+    width: 32px;
     margin: 0 .75rem;
 }
 
 .medium img {
-    width: 42px;
+    width: 50px;
     margin: 0 .75rem;
+}
+
+.search-container {
+    padding: 0;
+    flex: 2;
+}
+
+.playlist-container {
+    flex: 1 1 35px;
+    padding: 0;
+    background: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
+}
+
+.playlist-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.progress-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.vol {
+    position: absolute;
+    right: 0;
+}
+
+.vol img {
+    width: 24px;
 }

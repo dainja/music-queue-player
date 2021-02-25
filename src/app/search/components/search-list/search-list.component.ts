@@ -17,8 +17,10 @@ export class SearchListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  add(id, title) {
-    this.trackService.addTrack(id, title)
+  add(id, title, duration, thumbnail) {
+
+
+    this.trackService.addTrack(id, title, duration, thumbnail)
   }
 
 

@@ -11,30 +11,16 @@ import { TrackService } from './shared/services/track.service';
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   title = 'party-queue';
 
-  @ViewChild(MusicPlayerComponent) child;
-
-  parent;
-
-
-
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-
-    this.parent = this.child
-    console.log(this.parent.player);
-
-  }
 
 
 
   inputTouched = false;
   loading = false;
   videos: Video[] = []
-  product: any;
+
 
   constructor(private searchService: SearchService,
     public trackService: TrackService,
@@ -43,10 +29,6 @@ export class AppComponent implements AfterViewInit {
 
 
 
-  loggaService() {
-    console.log(this.parent.ytPlayer);
-
-  }
 
 
   // search handle for the search input

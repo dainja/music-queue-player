@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { TrackModel } from '../shared/models/track.interface';
+import { PlayerService } from '../shared/services/player.service';
 import { TrackService } from '../shared/services/track.service';
 
 @Component({
@@ -12,7 +14,10 @@ export class MusicPlaylistComponent {
   // new interface of TrackModel
   tracks: TrackModel[] = []
 
+
+
   constructor(private trackService: TrackService) { }
+
 
 
 

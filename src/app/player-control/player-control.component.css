@@ -1,0 +1,145 @@
+.container {
+    background-color: #d6cdc4 !important;
+    height: 100%;
+    width: 100vw;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+.top-container {
+    background-color: #bcac9db7;
+    height: 500px;
+    width: 100%;
+    position: relative;
+    background-image: url(src/assets/kendrick.png);
+    background-repeat: no-repeat;
+    background-size: 35%;
+    background-position-y: 50px;
+    background-position-x: center;
+}
+
+.player {
+    height: 100%;
+}
+
+.bg1 {
+    content: "";
+    background: url(src/assets/svg/wave2.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    opacity: 0.4;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.bg2 {
+    content: "";
+    background: url(src/assets/svg/wave1.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.bg3 {
+    content: "";
+    background: url(src/assets/svg/wave.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.artist-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 5rem;
+    z-index: 2;
+}
+
+.artist-name {
+    width: 200px;
+    line-height: 2.3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.artist-title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.progress {
+    height: 0.5rem !important;
+    width: 90%;
+}
+
+.tiny img {
+    width: 26px;
+    margin: 0 .75rem;
+}
+
+.small img {
+    width: 32px;
+    margin: 0 .75rem;
+}
+
+.medium img {
+    width: 50px;
+    margin: 0 .75rem;
+}
+
+.search-container {
+    padding: 0;
+    flex: 2;
+}
+
+.playlist-container {
+    flex: 1 1 35px;
+    padding: 0;
+    background: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
+}
+
+.playlist-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.progress-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.vol {
+    position: absolute;
+    right: 0;
+}
+
+.vol img {
+    width: 24px;
+}

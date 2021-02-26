@@ -63,55 +63,7 @@
         <div class="playlist">
           <app-music-player></app-music-player>
 
-          <div class="playlist-cover">
-            <img
-              src=""
-              alt=""
-            >
-          </div>
-          <div class="playlist-controls">
-
-            <div class="repeat small">
-              <img
-                src="../assets/svg/replay.svg"
-                alt=""
-              >
-            </div>
-            <div class="play medium">
-              <img
-                src="../assets/svg/play-button.svg"
-                alt=""
-              >
-            </div>
-            <div class="next small">
-              <img
-                src="../assets/svg/rewind-button.svg"
-                alt=""
-              >
-            </div>
-            <div
-              class="vol small"
-              (click)="loggaService()"
-            >
-              <img
-                src="../assets/svg/volume.svg"
-                alt=""
-              >
-            </div>
-          </div>
-          <div class="progress-container">
-            <div class="progress">
-              <div
-                class="progress-bar progress-bar-striped"
-                role="progressbar"
-                [style.width]="trackService.progress + '%'"
-                (aria-valuenow)="trackService.progress"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-          </div>
-
+          <app-player-control></app-player-control>
 
           <app-music-playlist></app-music-playlist>
         </div>

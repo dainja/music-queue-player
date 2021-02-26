@@ -8,11 +8,12 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { SearchInputComponent } from './search/components/search-input/search-input.component';
 import { SearchListComponent } from './search/components/search-list/search-list.component';
-import { SearchContainerComponent } from './search/container/search-container/search-container.component';
+
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { MusicPlayerComponent } from './music-player/music-player.component';
 import { NgxY2PlayerModule } from "ngx-y2-player";
 import { MusicPlaylistComponent } from './music-playlist/music-playlist.component';
+import { PlayerControlComponent } from './player-control/player-control.component';
 
 
 
@@ -21,9 +22,9 @@ import { MusicPlaylistComponent } from './music-playlist/music-playlist.componen
     AppComponent,
     SearchInputComponent,
     SearchListComponent,
-    SearchContainerComponent,
     MusicPlayerComponent,
     MusicPlaylistComponent,
+    PlayerControlComponent,
   ],
   imports: [
     BrowserModule,

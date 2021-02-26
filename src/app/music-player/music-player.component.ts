@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Injectable, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Injectable, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { YouTubePlayer } from '@angular/youtube-player';
+import { Subscription } from 'rxjs';
 import { TrackModel } from "../shared/models/track.interface";
+import { PlayerService } from '../shared/services/player.service';
 import { TrackService } from '../shared/services/track.service';
 
 @Injectable({
@@ -12,11 +14,16 @@ import { TrackService } from '../shared/services/track.service';
   styleUrls: [ './music-player.component.css' ],
 
 })
-export class MusicPlayerComponent implements OnInit {
+export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
 
   @ViewChild('ytIframe') ytPlayer: YouTubePlayer;
 
-
+  volume: number;
+  volumeSubscription: Subscription;
+  next: boolean;
+  nextSubscription: Subscription;
+  playAgain: boolean;
+  playAgainSubscription: Subscription;
 
   // create new interface of TrackModel
   tracks: TrackModel[] = []
@@ -36,7 +43,14 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   // import trackservice
-  constructor(private trackService: TrackService) {
+  constructor(private trackService: TrackService,
+    private playerService: PlayerService) {
+
+  }
+  ngOnDestroy(): void {
+    this.volumeSubscription.unsubscribe()
+    this.nextSubscription.unsubscribe()
+    this.playAgainSubscription.unsubscribe()
 
   }
 
@@ -49,7 +63,49 @@ export class MusicPlayerComponent implements OnInit {
 
     console.log('API loaded');
 
+    //
+    this.volumeSubscription = this.playerService.currentVolume.subscribe(volume => {
+      this.volume = volume
+      if (this.ytPlayer) {
+        console.log('player muted');
+
+        this.ytPlayer.setVolume(volume)
+
+      }
+
+    })
+
+    this.nextSubscription = this.playerService.nextPlaying.subscribe(next => {
+      this.next = next
+
+      if (this.ytPlayer) {
+        console.log('play next track');
+        // when track has ended go to next track in list
+
+        this.trackService.nextTrack();
+
+        // Wait for new track to load
+        setTimeout(() => {
+          if (this.currentTrack) {
+            this.ytPlayer.playVideo()
+          }
+        }, 100)
+
+      }
+    })
+
+    this.playAgainSubscription = this.playerService.playAgain.subscribe(rewind => {
+      this.playAgain = rewind
+
+      if (this.ytPlayer) {
+        console.log('replay track');
+
+        this.ytPlayer.seekTo(0, true)
+      }
+    })
+
   }
+
 
   // detect changes
   ngDoCheck() {
@@ -82,6 +138,8 @@ export class MusicPlayerComponent implements OnInit {
     let mytimer;
     if (data == YT.PlayerState.PLAYING) {
 
+
+
       // get full duration from youtube api
       const playerTotalTime = this.ytPlayer.getDuration();
 
@@ -109,17 +167,12 @@ export class MusicPlayerComponent implements OnInit {
 
 
 
-  // when track has ended go to next track in list
   nextTrack() {
-    this.trackService.nextTrack();
 
-    // Wait for new track to load
-    setTimeout(() => {
-      if (this.currentTrack) {
-        this.ytPlayer.playVideo()
-      }
-    }, 100)
   }
+
+
+
 
 
 }

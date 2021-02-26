@@ -1,0 +1,58 @@
+<div class="playlist-controls">
+
+    <div
+        class="repeat small"
+        (click)="playAgain(true)"
+    >
+        <img
+            src="../assets/svg/replay.svg"
+            alt=""
+        >
+    </div>
+    <div class="play medium">
+        <img
+            src="../assets/svg/play-button.svg"
+            alt=""
+        >
+    </div>
+    <div
+        class="next small"
+        (click)="nextTrack()"
+    >
+        <img
+            src="../assets/svg/rewind-button.svg"
+            alt=""
+        >
+    </div>
+    <div
+        class="vol small"
+        (click)="toggleVolume()"
+    >
+        <img
+            *ngIf="volume > 0; else elseVolume"
+            src="../assets/svg/volume.svg"
+            alt=""
+        >
+        <ng-template #elseVolume>
+            <img
+                #elseVolume
+                src="../assets/svg/mute-speaker.svg"
+                alt=""
+            >
+        </ng-template>
+
+
+    </div>
+</div>
+<div class="progress-container">
+    <div class="progress">
+        <div
+            class="progress-bar progress-bar-striped"
+            role="progressbar"
+            [style.width]="trackService.progress + '%'"
+            (aria-valuenow)="trackService.progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+        ></div>
+    </div>
+</div>

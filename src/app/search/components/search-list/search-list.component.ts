@@ -10,6 +10,7 @@ import { Video } from "../../../shared/models/search.interface";
 })
 export class SearchListComponent implements OnInit {
 
+  // new interface of Video model
   @Input() videos: Video[];
 
   constructor(private trackService: TrackService) { }
@@ -17,14 +18,11 @@ export class SearchListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // add to playlist function
   add(id, title, duration, thumbnail) {
-
 
     this.trackService.addTrack(id, title, duration, thumbnail)
   }
 
 
-  // onReady() {
-  //   this.trackService.ready()
-  // }
 }

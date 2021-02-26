@@ -9,11 +9,12 @@ import { TrackService } from '../shared/services/track.service';
 })
 export class MusicPlaylistComponent {
 
-
-
+  // new interface of TrackModel
   tracks: TrackModel[] = []
 
   constructor(private trackService: TrackService) { }
+
+
 
 
   ngDoCheck() {

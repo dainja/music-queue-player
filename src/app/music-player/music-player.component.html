@@ -1,5 +1,5 @@
 <youtube-player
-    #player
+    #ytIframe
     *ngIf="currentTrack"
     [videoId]="currentTrack.id"
     class="centered"
@@ -7,5 +7,6 @@
     [height]="videoHeight()"
     suggestedQuality="highres"
     [playerVars]="{autoplay: 1, controls: 0}"
+    (ready)="onReady()"
     (stateChange)="onStateChange($event)"
 ></youtube-player>

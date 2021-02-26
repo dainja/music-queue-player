@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Injectable, OnInit, Output, ViewChild } from '@angular/core';
 import { YouTubePlayer } from '@angular/youtube-player';
-import { Video } from '../shared/models/search.interface';
 import { TrackModel } from "../shared/models/track.interface";
 import { TrackService } from '../shared/services/track.service';
-import { DatePipe } from '@angular/common';
 
-
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-music-player',
   templateUrl: './music-player.component.html',
@@ -14,10 +14,20 @@ import { DatePipe } from '@angular/common';
 })
 export class MusicPlayerComponent implements OnInit {
 
-  @ViewChild('player') player: YouTubePlayer;
+  @ViewChild('ytIframe') ytPlayer: YouTubePlayer;
+
+
+
+  // create new interface of TrackModel
   tracks: TrackModel[] = []
+
+  // create new interface of TrackModel to show current track
   currentTrack: TrackModel
+
+  // greate property track duration
   trackDuration;
+
+  // functions to return dimensions, will be used for responsiveness later
   videoWidth() {
     return '400px'
   }
@@ -25,111 +35,88 @@ export class MusicPlayerComponent implements OnInit {
     return '225px'
   }
 
-
+  // import trackservice
   constructor(private trackService: TrackService) {
 
   }
 
+  // initiate the youtube iframe api
   ngOnInit() {
     const tag = document.createElement('script');
+
     tag.src = 'https://www.youtube.com/iframe_api';
     document.body.appendChild(tag);
 
-    console.log('API loaded'); // this is shown on the console.
-    // console.log(this.tracks);
-
-
-    // console.log(this.formatTime(302));
-
-
-
+    console.log('API loaded');
 
   }
 
-
-  formatTime(number) {
-    return this.trackDuration = new Date(number * 1000).toISOString().substr(11, 8)
-    // .substring(3)
-
-
-
-  }
-
-
-  // onReady() {
-  //   setTimeout(() => {
-  //     console.log(this.player.getPlayerState());
-
-  //   }, 100);
-
-  // }
-
-
-
+  // detect changes
   ngDoCheck() {
 
     this.tracks = this.trackService.getPlaylist()
     this.currentTrack = this.trackService.getCurrentTrack()
 
+  }
 
+  onReady() {
+    console.log(this.ytPlayer.getPlayerState());
 
   }
 
-  // funkar endast i incognito
+  // on my PC this only works in incognito, must have something blocking it
+  // state change of the player
   onStateChange({ data }) {
 
-    console.log(data);
-    if (data === YT.PlayerState.ENDED) { //if track has ended (0) play next
+
+
+    console.log('state changed', data);
+
+    //if track has ended (0) play next track
+    if (data === YT.PlayerState.ENDED) {
 
       this.nextTrack()
     }
 
+    // dynamic timer for the progressbar
     let mytimer;
     if (data == YT.PlayerState.PLAYING) {
 
+      // get full duration from youtube api
+      const playerTotalTime = this.ytPlayer.getDuration();
 
-      const playerTotalTime = this.player.getDuration();
-
+      // interval for 1 second check
       mytimer = setInterval(() => {
-        const playerCurrentTime = this.player.getCurrentTime();
 
+        // returns current time of track
+        const playerCurrentTime = this.ytPlayer.getCurrentTime();
+
+        // algorithm to convert and get track time
         const playerTimeDifference = (playerCurrentTime / playerTotalTime) * 100;
 
+        // send difference to function in service
         this.trackService.setProgress(playerTimeDifference)
 
       }, 1000);
     } else {
 
+      // clear timer variable
       clearInterval(mytimer);
 
-
     }
-
-
-    // if (data == YT.PlayerState.PLAYING && data !== 0) {
-    //   let duration = this.player.getDuration();
-
-    //   let convertedDuration = this.formatTime(duration);
-
-    //   if (convertedDuration.substring(0, 3) == '00:') {
-    //     convertedDuration = convertedDuration.substring(3);
-    //     console.log(convertedDuration);
-    //   }
-
-    //   console.log(convertedDuration);
-    // }
-
-
 
   }
 
 
 
+  // when track has ended go to next track in list
   nextTrack() {
     this.trackService.nextTrack();
-    setTimeout(() => { // Wait for new track to load
+
+    // Wait for new track to load
+    setTimeout(() => {
       if (this.currentTrack) {
-        this.player.playVideo()
+        this.ytPlayer.playVideo()
       }
     }, 100)
   }

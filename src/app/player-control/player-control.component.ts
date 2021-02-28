@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { TrackModel } from '../shared/models/track.interface';
 import { PlayerService } from '../shared/services/player.service';
 import { TrackService } from '../shared/services/track.service';
 
@@ -7,9 +8,10 @@ import { TrackService } from '../shared/services/track.service';
   templateUrl: './player-control.component.html',
   styleUrls: [ './player-control.component.css' ]
 })
-export class PlayerControlComponent implements OnInit {
+export class PlayerControlComponent implements OnInit, DoCheck {
 
   volume = 1;
+  pause = true;
 
   constructor(public trackService: TrackService,
     public playerService: PlayerService) { }
@@ -17,6 +19,12 @@ export class PlayerControlComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  togglePause() {
+
+    this.playerService.changePause(true)
+    this.pause = this.pause ? false : true
+  }
 
   toggleVolume() {
     this.volume = this.volume ? 0 : 100
@@ -32,4 +40,24 @@ export class PlayerControlComponent implements OnInit {
 
     this.playerService.startOver(boolean)
   }
+
+
+
+
+  // new interface of TrackModel
+  tracks: TrackModel[] = []
+
+
+
+
+
+
+
+
+  ngDoCheck() {
+
+    this.tracks = this.trackService.getPlaylist()
+
+  }
+
 }

@@ -24,7 +24,7 @@ export class SearchService {
   async getVideos(query: string): Promise<any> {
 
     // create correct URL with value from search input
-    const url = `${this.API_URL}?q=${query}&key=${this.API_TOKEN_ACC_ONE}&part=snippet&type=video&maxResults=3`;
+    const url = `${this.API_URL}?q=${query}&key=${this.API_TOKEN_ACC_ONE}&part=snippet&type=video&maxResults=10`;
 
     // send url with data from search input to get response with tracks
     const videos: any = await this.http.get(url).toPromise();

@@ -20,6 +20,8 @@ export class TrackService {
 
   // add track to array, which will be visible in playlist
   addTrack(id, title, duration, thumbnail) {
+    console.log('%c%s',
+      'color: black; background: #b6cfb6; font-weight: bold; font-size: 20px', `${title} added to playlist`)
     this.tracks.push({
       id,
       title,
@@ -28,7 +30,7 @@ export class TrackService {
     })
 
 
-    console.log(this.tracks);
+    // console.log(this.tracks);
 
   }
 
@@ -41,6 +43,8 @@ export class TrackService {
 
   // remove track
   removeTrack(index) {
+    console.log('%c%s',
+      'color: black; background: #ff968a; font-weight: bold; font-size: 20px', 'Track removed from playlist')
     return this.tracks.splice(index, 1)
   }
 

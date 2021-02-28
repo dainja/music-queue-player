@@ -24,6 +24,9 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
   nextSubscription: Subscription;
   playAgain: boolean;
   playAgainSubscription: Subscription;
+  pause: boolean;
+  pauseSubscription: Subscription;
+
 
   // create new interface of TrackModel
   tracks: TrackModel[] = []
@@ -51,6 +54,7 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
     this.volumeSubscription.unsubscribe()
     this.nextSubscription.unsubscribe()
     this.playAgainSubscription.unsubscribe()
+    this.pauseSubscription.unsubscribe()
 
   }
 
@@ -67,8 +71,8 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
     this.volumeSubscription = this.playerService.currentVolume.subscribe(volume => {
       this.volume = volume
       if (this.ytPlayer) {
-        console.log('player muted');
-
+        console.log('%c%s',
+          'color: black; background: #ff968a; font-weight: bold; font-size: 20px', 'Track muted')
         this.ytPlayer.setVolume(volume)
 
       }
@@ -79,17 +83,22 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
       this.next = next
 
       if (this.ytPlayer) {
-        console.log('play next track');
-        // when track has ended go to next track in list
+        if (this.tracks.length > 1) {
+          console.log('%c%s',
+            'color: black; background: #ffff85; font-weight: bold; font-size: 20px', 'Play next track')
 
-        this.trackService.nextTrack();
+          // when track has ended go to next track in list
 
-        // Wait for new track to load
-        setTimeout(() => {
-          if (this.currentTrack) {
-            this.ytPlayer.playVideo()
-          }
-        }, 100)
+          this.trackService.nextTrack();
+
+          // Wait for new track to load
+          setTimeout(() => {
+            if (this.currentTrack) {
+              this.ytPlayer.playVideo()
+            }
+          }, 100)
+
+        }
 
       }
     })
@@ -98,11 +107,32 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
       this.playAgain = rewind
 
       if (this.ytPlayer) {
-        console.log('replay track');
+        console.log('%c%s',
+          'color: black; background: #ffccb6; font-weight: bold; font-size: 20px', 'Track replayed')
 
         this.ytPlayer.seekTo(0, true)
       }
     })
+
+    this.pauseSubscription = this.playerService.pause.subscribe(pause => {
+      this.pause = pause
+
+      if (this.ytPlayer) {
+
+        console.log('%c%s',
+          'color: black; background: #abdee6; font-weight: bold; font-size: 20px', 'Track paused')
+        this.ytPlayer.pauseVideo()
+
+
+
+        if (this.ytPlayer.getPlayerState() == 2) {
+          this.ytPlayer.playVideo()
+          console.log('%c%s',
+            'color: black; background: #b6cfb6; font-weight: bold; font-size: 20px', 'Track resumed')
+        }
+      }
+    })
+
 
   }
 
@@ -116,7 +146,7 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   onReady() {
-    console.log(this.ytPlayer.getPlayerState());
+    // console.log(this.ytPlayer.getPlayerState());
 
   }
 
@@ -126,7 +156,7 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
 
 
 
-    console.log('state changed', data);
+    // console.log('state changed', data);
 
     //if track has ended (0) play next track
     if (data === YT.PlayerState.ENDED) {

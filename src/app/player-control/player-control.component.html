@@ -1,26 +1,40 @@
-<div class="playlist-controls">
+<div
+    class="playlist-controls"
+    *ngIf="tracks?.length"
+>
 
     <div
         class="repeat small"
         (click)="playAgain(true)"
     >
         <img
-            src="../assets/svg/replay.svg"
+            src="../assets/svg/previous.svg"
             alt=""
         >
     </div>
-    <div class="play medium">
+    <div
+        class="play medium"
+        (click)="togglePause()"
+    >
         <img
-            src="../assets/svg/play-button.svg"
+            *ngIf="pause == false; else elsePause"
+            src="../assets/svg/play-btn.svg"
             alt=""
         >
+        <ng-template #elsePause>
+            <img
+                #elsePause
+                src="../assets/svg/pause-button.svg"
+                alt=""
+            >
+        </ng-template>
     </div>
     <div
         class="next small"
         (click)="nextTrack()"
     >
         <img
-            src="../assets/svg/rewind-button.svg"
+            src="../assets/svg/skip-button.svg"
             alt=""
         >
     </div>
@@ -36,7 +50,7 @@
         <ng-template #elseVolume>
             <img
                 #elseVolume
-                src="../assets/svg/mute-speaker.svg"
+                src="../assets/svg/mute.svg"
                 alt=""
             >
         </ng-template>
@@ -44,7 +58,10 @@
 
     </div>
 </div>
-<div class="progress-container">
+<div
+    class="progress-container"
+    *ngIf="tracks?.length"
+>
     <div class="progress">
         <div
             class="progress-bar progress-bar-striped"

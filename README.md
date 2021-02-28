@@ -2,7 +2,7 @@
 
 - A web music player created in Angular using YouTube API v3.
 
-## Why?
+## Info
 
 - No more fighting over what song to play, sit back, relax, and simply create a party-room with your friends, search for songs and add them to a shared playlist.
 

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "party-queue-angular": {
+      "hosting": {
+        "party-queue": [
+          "party-queue-angular"
+        ]
+      }
+    }
+  }
+}

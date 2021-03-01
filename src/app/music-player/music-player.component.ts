@@ -1,4 +1,5 @@
 import { Component, DoCheck, EventEmitter, Injectable, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { Subscription } from 'rxjs';
 import { TrackModel } from "../shared/models/track.interface";
@@ -47,7 +48,9 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
 
   // import trackservice
   constructor(private trackService: TrackService,
-    private playerService: PlayerService) {
+    private playerService: PlayerService,
+    private store: AngularFirestore
+  ) {
 
   }
   ngOnDestroy(): void {
@@ -161,7 +164,7 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
     //if track has ended (0) play next track
     if (data === YT.PlayerState.ENDED) {
 
-      this.nextTrack()
+      this.trackService.nextTrack()
     }
 
     // dynamic timer for the progressbar
@@ -197,9 +200,6 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
 
 
 
-  nextTrack() {
-
-  }
 
 
 

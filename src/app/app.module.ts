@@ -14,6 +14,10 @@ import { MusicPlayerComponent } from './music-player/music-player.component';
 import { NgxY2PlayerModule } from "ngx-y2-player";
 import { MusicPlaylistComponent } from './music-playlist/music-playlist.component';
 import { PlayerControlComponent } from './player-control/player-control.component';
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+
 
 
 
@@ -33,7 +37,9 @@ import { PlayerControlComponent } from './player-control/player-control.componen
     MaterialModule,
     HttpClientModule,
     YouTubePlayerModule,
-    NgxY2PlayerModule
+    NgxY2PlayerModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [ AppComponent ]

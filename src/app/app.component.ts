@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { MusicPlayerComponent } from './music-player/music-player.component';
 import { Video } from './shared/models/search.interface';
 import { PlayerService } from './shared/services/player.service';

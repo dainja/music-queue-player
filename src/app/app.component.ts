@@ -21,14 +21,28 @@ export class AppComponent {
   inputTouched = false;
   loading = false;
   videos: Video[] = []
+  roomId: string = "";
+  rooms: string[];
+
 
 
   constructor(private searchService: SearchService,
     public trackService: TrackService,
     public playerService: PlayerService,
+    private store: AngularFirestore,
   ) { }
 
+ngOnInit(): void {
+  //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+  //Add 'implements OnInit' to the class.
+  this.store.collection('playlists')
+  .valueChanges()
+  .subscribe((docs: any)=>{
+    this.rooms = docs.map(doc => doc.room)
+    console.log(docs);
 
+  })
+}
 
 
 

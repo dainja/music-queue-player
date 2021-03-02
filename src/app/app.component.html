@@ -1,67 +1,85 @@
 <div class="container my-5 px-0">
-  <div class="col px-0">
-    <div class="row">
-      <div class="top-container text-white">
+  <div class="yesRoom" *ngIf="trackService.room">
+    <p>Your are in room {{trackService.room}}</p>
+    yesRoom
+    <button (click)="trackService.leaveRoom()">Leave Room</button>
+    <div class="col px-0">
+      <div class="row">
+        <div class="top-container text-white">
 
-        <div class="row player">
-          <div class="bg1"></div>
-          <div class="bg2"></div>
-          <div class="bg3"></div>
-          <div class="col artist-container">
-            <div class="artist">
-              <h1 class="artist-name">Kendrick Lamar</h1>
+          <div class="row player">
+            <div class="bg1"></div>
+            <div class="bg2"></div>
+            <div class="bg3"></div>
+            <div class="col artist-container">
+              <div class="artist">
+                <h1 class="artist-name">Kendrick Lamar</h1>
+              </div>
+              <div class="title">
+                <p class="artist-title">HUMBLE</p>
+              </div>
+
+              <div class="lower-control-panel ">
+
+
+
+              </div>
             </div>
-            <div class="title">
-              <p class="artist-title">HUMBLE</p>
-            </div>
 
-            <div class="lower-control-panel ">
-
-
+            <div class="col">
 
             </div>
+
+
           </div>
-
-          <div class="col">
-
-          </div>
+          <app-search-input (search)="handleSearch($event)"></app-search-input>
 
 
         </div>
-        <app-search-input (search)="handleSearch($event)"></app-search-input>
-
-
       </div>
-    </div>
-    <!-- insert searchlist here -->
+      <!-- insert searchlist here -->
 
-    <div class="row">
-      <div class="col playlist-container mr-2">
-        <div class="playlist">
-          <app-music-player></app-music-player>
+      <div class="row">
+        <div class="col playlist-container mr-2">
+          <div class="playlist">
+            <app-music-player *ngIf="trackService.host"></app-music-player>
 
-          <app-player-control></app-player-control>
+            <div *ngIf="!trackService.host">Currently Playing</div>
+            <app-player-control *ngIf="trackService.host"></app-player-control>
 
-          <app-music-playlist></app-music-playlist>
+            <app-music-playlist></app-music-playlist>
+          </div>
+        </div>
+        <div class="col search-container">
+          <app-search-list *ngIf="!loading" [videos]="videos"></app-search-list>
         </div>
       </div>
-      <div class="col search-container">
-        <app-search-list
-          *ngIf="!loading"
-          [videos]="videos"
-        ></app-search-list>
-      </div>
+
+
+
     </div>
+  </div>
+  <div class="noRoom" *ngIf="!trackService.room">noRoom
+    {{roomId.length}}
+    {{roomId}}
+    <input type="text" [(ngModel)]="roomId">
+    <button (click)="trackService.createRoom(roomId)" [disabled]="roomId.length < 3">Create room</button>
 
+    <div class="showRooms">
+      <div *ngFor="let room of rooms">
+        <button (click)="trackService.joinRoom(room)">{{room}}</button>
 
+      </div>
+
+    </div>
 
   </div>
 
+
+
+
 </div>
-<div
-  style="width: 250px; height: 250px;"
-  class="p-5"
->
+<div style="width: 250px; height: 250px;" class="p-5">
 
 
 </div>

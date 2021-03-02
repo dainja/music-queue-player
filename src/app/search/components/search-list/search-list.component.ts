@@ -19,9 +19,9 @@ export class SearchListComponent implements OnInit {
   }
 
   // add to playlist function
-  add(id, title, duration, thumbnail) {
+  add(video: Video) {
 
-    this.trackService.addTrack(id, title, duration, thumbnail)
+    this.trackService.addTrack(video)
   }
 
 

@@ -1,21 +1,12 @@
-<div
-    class="separator"
-    *ngIf="tracks?.length"
->Playlist</div>
+<div class="separator" *ngIf="tracks?.length">Coming up next</div>
 
 
-<div
-    *ngFor="let track of tracks; index as i"
-    class="row playlist-item-container m-0"
->
+<div *ngFor="let track of tracks; index as i" class="row playlist-item-container m-0">
 
 
-    <div class="track">
+    <div class="track" *ngIf="i > 0">
         <div class="track-cover">
-            <img
-                src="{{track.thumbnail}}"
-                alt=""
-            >
+            <img src="{{track.thumbnail}}" alt="">
         </div>
         <div class="track-details">
             <div class="track-title">
@@ -26,14 +17,8 @@
                 <div class="duration">
                     {{track.duration}}
                 </div>
-                <div
-                    class="remove-track"
-                    (click)="trackService.removeTrack(i)"
-                >
-                    <img
-                        src="../../assets/svg/remove.svg"
-                        alt=""
-                    >
+                <div class="remove-track" (click)="trackService.removeTrack(track.refId)">
+                    <img src="../../assets/svg/remove.svg" alt="">
                 </div>
             </div>
         </div>

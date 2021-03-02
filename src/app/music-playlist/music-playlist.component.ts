@@ -10,26 +10,19 @@ import { TrackService } from '../shared/services/track.service';
   templateUrl: './music-playlist.component.html',
   styleUrls: [ './music-playlist.component.css' ]
 })
-export class MusicPlaylistComponent {
+export class MusicPlaylistComponent implements OnInit{
 
   // new interface of TrackModel
   tracks: TrackModel[] = []
-  trakks: Observable<any[]>;
+  trakks;
 
 
-  constructor(private trackService: TrackService,
+  constructor(public trackService: TrackService,
     private store: AngularFirestore) { }
 
 
   ngOnInit(): void {
-    this.store.collection('tracks')
-      .valueChanges()
-      .subscribe(docs => {
-        // loop through each item in the array and log value
-        console.log(docs);
 
-
-      });
     // exempel på crud firebase
     // https://bezkoder.com/angular-11-firestore-crud-angularfirestore/#AngularFireStore_for_creategetupdatedelete_Collection
   }

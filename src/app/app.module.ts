@@ -17,6 +17,7 @@ import { PlayerControlComponent } from './player-control/player-control.componen
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -39,6 +40,7 @@ import { environment } from 'src/environments/environment';
     YouTubePlayerModule,
     NgxY2PlayerModule,
     AngularFirestoreModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],

@@ -3,5 +3,6 @@ export interface TrackModel {
     title: string;
     duration: string;
     thumbnail: string;
-
+    added: number;
+    refId: string;
 }

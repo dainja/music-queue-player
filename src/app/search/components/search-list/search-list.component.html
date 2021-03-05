@@ -1,91 +1,55 @@
-<!--
-<div class="row">
-    <div class="bottom-container">
-        <div
-            class="search-card"
-            *ngFor="let video of videos; let last = last"
-            [ngClass]="{'last-child': last}"
-        >
-
-            <div class="search-item d-flex">
-                <div
-                    class="yt-cover"
-                    (click)="add(video.videoId, video.title);"
-                >
-                    <img
-                        [src]="video.thumbnail"
-                        alt=""
-                        class="yt-thumbnail"
-                    >
-                </div>
-                <div class="yt-details">
-                    <div class="track-info d-flex">
-                        <div class="track-meta">
-                            <div
-                                class="yt-artist"
-                                (click)="add(video.videoId, video.title);"
-                            >{{ video.title }}</div>
-                            <div class="yt-channel">
-                                <a
-                                    [href]="video.videoUrl"
-                                    target="_blank"
-                                    class="yt-channel-link"
-                                >
-                                    {{video.channelTitle}}
-                                </a>
-                                <span class="yt-published">
-                                    {{ video.publishedAt | date:'mediumDate' }}</span>
-                            </div>
-                        </div>
-                        <div
-                            class="yt-add-to-playlist large"
-                            style="cursor:pointer;"
-                        >
-
-                            <img
-                                src="../assets/svg/add-to-playlist.svg"
-                                (click)="add(video.videoId, video.title);"
-                            >
-                        </div>
-                    </div>
-                    <div class="yt-metadata">{{video.duration}}</div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div> -->
-
-
 <div class="bottom-container">
-    <div class="search-card" *ngFor="let video of videos; let last = last" [ngClass]="{'last-child': last}">
+  <div
+    class="search-card"
+    *ngFor="let video of videos; let last = last"
+    [ngClass]="{'last-child': last}"
+  >
 
-        <div class="search-item d-flex">
-            <div class="yt-cover" (click)="add(video.videoId, video.title, video.duration, video.thumbnail);">
-                <img [src]="video.thumbnail" alt="" class="yt-thumbnail">
+    <div class="search-item d-flex">
+      <div
+        class="yt-cover"
+        (click)="add(video.videoId, video.title, video.duration, video.thumbnail);"
+      >
+        <img
+          [src]="video.thumbnail"
+          alt=""
+          class="yt-thumbnail"
+        >
+      </div>
+      <div class="yt-details">
+        <div class="track-info d-flex">
+          <div class="track-meta">
+            <div
+              class="yt-artist"
+              (click)="add(video.videoId, video.title, video.duration, video.thumbnail);"
+            >{{ video.title
+              }}</div>
+            <div class="yt-channel">
+              <a
+                [href]="video.videoUrl"
+                target="_blank"
+                class="yt-channel-link"
+              >
+                {{video.channelTitle}}
+              </a>
+              <span class="yt-published">
+                {{ video.publishedAt | date:'mediumDate' }}</span>
             </div>
-            <div class="yt-details">
-                <div class="track-info d-flex">
-                    <div class="track-meta">
-                        <div class="yt-artist"
-                            (click)="add(video.videoId, video.title, video.duration, video.thumbnail);">{{ video.title
-                            }}</div>
-                        <div class="yt-channel">
-                            <a [href]="video.videoUrl" target="_blank" class="yt-channel-link">
-                                {{video.channelTitle}}
-                            </a>
-                            <span class="yt-published">
-                                {{ video.publishedAt | date:'mediumDate' }}</span>
-                        </div>
-                    </div>
-                    <div class="yt-add-to-playlist large" style="cursor:pointer;">
+          </div>
+          <div
+            class="yt-add-to-playlist large"
+            style="cursor:pointer;"
+          >
 
-                        <img src="../assets/svg/add-to-playlist.svg" (click)="add(video);">
-                    </div>
-                </div>
-                <div class="yt-metadata">{{video.duration}}</div>
-            </div>
+            <img
+              src="../assets/svg/add-to-playlist.svg"
+              (click)="add(video);"
+            >
+          </div>
         </div>
-
+        <div class="yt-metadata">{{video.duration}}</div>
+      </div>
     </div>
+
+  </div>
 </div>

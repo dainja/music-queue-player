@@ -11,7 +11,9 @@
     margin: -9% auto;
 }
 
-.remove-track {}
+.remove-track {
+    cursor: pointer;
+}
 
 .remove-track img {
     width: 24px;
@@ -60,12 +62,4 @@
     content: '';
     flex: 1;
     border-bottom: 1px solid #000;
-}
-
-.separator:not(:empty)::before {
-    margin-right: .25em;
-}
-
-.separator:not(:empty)::after {
-    margin-left: .25em;
 }

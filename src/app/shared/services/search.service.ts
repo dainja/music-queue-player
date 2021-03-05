@@ -24,7 +24,7 @@ export class SearchService {
   async getVideos(query: string): Promise<any> {
 
     // create correct URL with value from search input
-    const url = `${this.API_URL}?q=${query}&key=${this.API_TOKEN_ACC_ONE}&part=snippet&type=video&maxResults=10`;
+    const url = `${this.API_URL}?q=${query}&key=${this.API_TOKEN_ACC_TWO}&part=snippet&type=video&maxResults=10`;
 
     // send url with data from search input to get response with tracks
     const videos: any = await this.http.get(url).toPromise();
@@ -33,7 +33,7 @@ export class SearchService {
     const ids = videos.items.map(item => item.id.videoId).join(',');
 
     // create url with video ids
-    const videoURL = `https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id=${ids}&key=${this.API_TOKEN_ACC_ONE}`;
+    const videoURL = `https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id=${ids}&key=${this.API_TOKEN_ACC_TWO}`;
 
     // send second url with ids to get metadata for the tracks
     // we have to send this to get for example duration of track

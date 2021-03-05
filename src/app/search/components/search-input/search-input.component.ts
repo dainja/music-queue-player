@@ -1,16 +1,26 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Output,
+  ViewChild,
+  EventEmitter,
+} from '@angular/core';
 import { fromEvent } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, pluck } from 'rxjs/operators';
-
-
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  pluck,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-input',
   templateUrl: './search-input.component.html',
-  styleUrls: [ './search-input.component.css' ]
+  styleUrls: [ './search-input.component.css' ],
 })
 export class SearchInputComponent implements AfterViewInit {
-
   // view #input html tag
   @ViewChild('input') inputElement: ElementRef;
 
@@ -19,11 +29,9 @@ export class SearchInputComponent implements AfterViewInit {
 
   constructor() { }
 
-
   //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
   //Add 'implements AfterViewInit' to the class.
   ngAfterViewInit(): void {
-
     // search rules
     fromEvent(this.inputElement.nativeElement, 'keyup')
       .pipe(
@@ -34,11 +42,8 @@ export class SearchInputComponent implements AfterViewInit {
         filter((value: string) => value.length > 3),
         map((value) => value)
       )
-      .subscribe(value => {
-        this.search.emit(value)
-
-
-      })
+      .subscribe((value) => {
+        this.search.emit(value);
+      });
   }
-
 }

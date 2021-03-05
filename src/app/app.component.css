@@ -11,14 +11,14 @@
 
 .top-container {
     background-color: #bcac9db7;
-    height: 500px;
+    height: 300px;
     width: 100%;
     position: relative;
-    background-image: url(src/assets/kendrick.png);
+    background-image: url(src/assets/iheartmusic.png);
     background-repeat: no-repeat;
-    background-size: 35%;
+    background-size: 30%;
     background-position-y: 50px;
-    background-position-x: center;
+    background-position-x: 700px;
 }
 
 .player {
@@ -30,7 +30,7 @@
     background: url(src/assets/svg/wave2.svg);
     background-repeat: no-repeat;
     background-position: bottom;
-    opacity: 0.4;
+    opacity: 0.2;
     top: 0;
     left: 0;
     bottom: 0;
@@ -81,11 +81,14 @@
     line-height: 2.3rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    float: right;
+    text-align: right;
 }
 
 .artist-title {
     font-size: 1rem;
     font-weight: 500;
+    float: right;
 }
 
 .progress {
@@ -110,11 +113,11 @@
 
 .search-container {
     padding: 0;
-    flex: 2;
+    flex: 3;
 }
 
 .playlist-container {
-    flex: 1 1 35px;
+    flex: 2 1 35px;
     padding: 0;
     background: #fff;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -142,4 +145,76 @@
 
 .vol img {
     width: 24px;
+}
+
+.room-container {
+    z-index: 100;
+    display: flex;
+}
+
+.room-card {
+    width: 100%;
+    margin-top: 3rem;
+    padding: 1rem;
+}
+
+.room-btn-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.room-btn-container div {
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.room-btn-container button {
+    display: block;
+    width: 60%;
+    font-size: 14px;
+}
+
+.noRoom {
+    display: flex;
+    justify-content: center;
+}
+
+.create-btn {
+    background-color: darkseagreen;
+    border-radius: 0 0 4px 4px;
+}
+
+.join-btn {
+    width: 100%;
+    background-color: cornflowerblue;
+    margin: 5px 0;
+}
+
+.join-btn:last-child {
+    margin-bottom: 0;
+}
+
+#party {
+    border-radius: 4px 4px 0 0;
+}
+
+.welcome {
+    width: 500px;
+    margin-left: 6rem;
+    padding: 1rem;
+}
+
+.top-container-noRoom {
+    background-color: #bcac9db7;
+    width: 100%;
+    position: relative;
+    background-image: url(src/assets/iheartmusic.png);
+    background-repeat: no-repeat;
+    background-size: 30%;
+    background-position-y: 50px;
+    background-position-x: 700px;
+}
+
+.card {
+    z-index: 10;
 }

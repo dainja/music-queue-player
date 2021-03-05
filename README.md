@@ -1,6 +1,7 @@
 ## Party Queue Playlist
 
 - A web music player created in Angular using YouTube API v3.
+- ![DEMO](https://party-queue-angular.web.app/)
 
 ## Info
 

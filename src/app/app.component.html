@@ -1,40 +1,40 @@
 <div class="container my-5 px-0">
-  <div class="yesRoom" *ngIf="trackService.room">
-    <p>Your are in room {{trackService.room}}</p>
-    yesRoom
-    <button (click)="trackService.leaveRoom()">Leave Room</button>
+  <div
+    class="yesRoom"
+    *ngIf="trackService.room"
+  >
     <div class="col px-0">
       <div class="row">
         <div class="top-container text-white">
-
           <div class="row player">
             <div class="bg1"></div>
             <div class="bg2"></div>
             <div class="bg3"></div>
+            <div class="col room-container">
+              <div class="room-card">
+                <h3 class="room-info">
+                  Welcome to {{ trackService.room }}'s Party
+                </h3>
+                <p>Search for a track and add it to the playlist.</p>
+                <button
+                  class="btn btn-danger"
+                  (click)="trackService.leaveRoom()"
+                >
+                  Leave Room
+                </button>
+              </div>
+            </div>
+
             <div class="col artist-container">
               <div class="artist">
-                <h1 class="artist-name">Kendrick Lamar</h1>
+                <h2 class="artist-name"></h2>
               </div>
               <div class="title">
-                <p class="artist-title">HUMBLE</p>
-              </div>
-
-              <div class="lower-control-panel ">
-
-
-
+                <p class="artist-title"></p>
               </div>
             </div>
-
-            <div class="col">
-
-            </div>
-
-
           </div>
           <app-search-input (search)="handleSearch($event)"></app-search-input>
-
-
         </div>
       </div>
       <!-- insert searchlist here -->
@@ -42,44 +42,101 @@
       <div class="row">
         <div class="col playlist-container mr-2">
           <div class="playlist">
-            <app-music-player *ngIf="trackService.host"></app-music-player>
+            <app-music-player></app-music-player>
 
-            <div *ngIf="!trackService.host">Currently Playing</div>
-            <app-player-control *ngIf="trackService.host"></app-player-control>
+            <app-player-control></app-player-control>
 
             <app-music-playlist></app-music-playlist>
           </div>
         </div>
         <div class="col search-container">
-          <app-search-list *ngIf="!loading" [videos]="videos"></app-search-list>
+          <app-search-list
+            *ngIf="!loading"
+            [videos]="videos"
+          ></app-search-list>
         </div>
       </div>
-
-
-
     </div>
   </div>
-  <div class="noRoom" *ngIf="!trackService.room">noRoom
-    {{roomId.length}}
-    {{roomId}}
-    <input type="text" [(ngModel)]="roomId">
-    <button (click)="trackService.createRoom(roomId)" [disabled]="roomId.length < 3">Create room</button>
-
-    <div class="showRooms">
-      <div *ngFor="let room of rooms">
-        <button (click)="trackService.joinRoom(room)">{{room}}</button>
-
+  <div
+    class="top-container-noRoom text-white"
+    *ngIf="!trackService.room"
+  >
+    <div class="bg1"></div>
+    <div class="bg2"></div>
+    <div class="bg3"></div>
+    <div class="noRoom-container">
+      <div class="welcome">
+        <h3 class="font-weight-bold">LGND MUSIC QUEUE PLAYER</h3>
+        <br />
+        <p>
+          <span class="font-weight-bold">Simple solution</span> to major
+          problem. Remember all those parties you hosted/attended where everyone
+          wanted to share the banger-track they love so much.
+          <br />
+          <br /><span class="font-weight-bold">LGND Player to the rescue. </span><br />Less time talking about what
+          track to play, more time talking
+          with your friends. Share a playlist and queue the track you want to
+          play.
+        </p>
       </div>
 
+      <div class="noRoom">
+        <div
+          class="card text-white bg-secondary mb-3 mx-3"
+          style="max-width: 18rem"
+        >
+          <div class="card-header">
+            <h5 class="m-0">Create Room</h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              To host a party, simply create a new party-room below and tell
+              your friends to join.
+            </p>
+          </div>
+          <input
+            id="party"
+            name="party"
+            placeholder="Party name..."
+            type="text"
+            [(ngModel)]="roomId"
+            class="form-control"
+            style="font-size: 14px"
+            maxlength="15"
+          />
+          <button
+            mat-flat-button
+            class="create-btn text-white font-weight-bolder"
+            (click)="trackService.createRoom(roomId)"
+          >
+            Create
+          </button>
+        </div>
+        <div
+          class="card text-white bg-secondary mb-3 mx-3"
+          style="max-width: 18rem"
+        >
+          <div class="card-header">
+            <h5 class="m-0">Join Room</h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              Join an existing party and share the party playlist together.
+            </p>
+          </div>
+          <p class="mt-2 mb-0 pl-2 font-weight-bold">Available Rooms</p>
+          <div *ngFor="let room of rooms">
+            <button
+              mat-flat-button
+              class="join-btn text-white font-weight-bold"
+              (click)="trackService.joinRoom(room)"
+            >
+              {{ room }}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
-
-
-
-
-</div>
-<div style="width: 250px; height: 250px;" class="p-5">
-
-
 </div>

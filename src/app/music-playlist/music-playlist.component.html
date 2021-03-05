@@ -1,26 +1,81 @@
-<div class="separator" *ngIf="tracks?.length">Coming up next</div>
-
-
-<div *ngFor="let track of tracks; index as i" class="row playlist-item-container m-0">
-
-
-    <div class="track" *ngIf="i > 0">
-        <div class="track-cover">
-            <img src="{{track.thumbnail}}" alt="">
-        </div>
-        <div class="track-details">
-            <div class="track-title">
-                <div>{{track.title}}</div>
-            </div>
-
-            <div class="track-controller-bottom">
-                <div class="duration">
-                    {{track.duration}}
-                </div>
-                <div class="remove-track" (click)="trackService.removeTrack(track.refId)">
-                    <img src="../../assets/svg/remove.svg" alt="">
-                </div>
-            </div>
-        </div>
+<div
+  class="separator"
+  *ngIf="tracks[0]"
+>Currently playing</div>
+<div
+  class="row playlist-item-container m-0"
+  *ngIf="tracks[0]"
+>
+  <div class="track">
+    <div class="track-cover">
+      <img
+        src="{{ tracks[0].thumbnail }}"
+        alt=""
+      />
     </div>
+    <div class="track-details">
+      <div class="track-title">
+        <div>{{ tracks[0].title }}</div>
+      </div>
+
+      <div class="track-controller-bottom">
+        <div class="duration">
+          {{ tracks[0].duration }}
+        </div>
+        <div
+          *ngIf="trackService.host"
+          class="remove-track"
+          (click)="trackService.removeTrack(tracks[0].refId)"
+        >
+          <img
+            src="../../assets/svg/remove.svg"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="separator"
+  *ngIf="tracks.length > 1"
+>Coming up next</div>
+
+<div
+  *ngFor="let track of tracks; index as i"
+  class="row playlist-item-container m-0"
+>
+  <div
+    class="track"
+    *ngIf="i > 0"
+  >
+    <div class="track-cover">
+      <img
+        src="{{ track.thumbnail }}"
+        alt=""
+      />
+    </div>
+    <div class="track-details">
+      <div class="track-title">
+        <div>{{ track.title }}</div>
+      </div>
+
+      <div class="track-controller-bottom">
+        <div class="duration">
+          {{ track.duration }}
+        </div>
+        <div
+          class="remove-track"
+          *ngIf="trackService.host"
+          (click)="trackService.removeTrack(track.refId)"
+        >
+          <img
+            src="../../assets/svg/remove.svg"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -6,58 +6,45 @@ import { TrackService } from '../shared/services/track.service';
 @Component({
   selector: 'app-player-control',
   templateUrl: './player-control.component.html',
-  styleUrls: [ './player-control.component.css' ]
+  styleUrls: [ './player-control.component.css' ],
 })
-export class PlayerControlComponent implements OnInit, DoCheck {
-
+export class PlayerControlComponent implements DoCheck {
+  // properties
   volume = 1;
   pause = true;
 
-  constructor(public trackService: TrackService,
-    public playerService: PlayerService) { }
+  constructor(
+    public trackService: TrackService,
+    public playerService: PlayerService
+  ) { }
 
-  ngOnInit(): void {
+  // new interface of TrackModel
+  tracks: TrackModel[] = [];
+
+  ngDoCheck() {
+    this.tracks = this.trackService.getPlaylist();
   }
 
-
+  // controller functions
   togglePause() {
-
-    this.playerService.changePause(true)
-    this.pause = this.pause ? false : true
+    this.playerService.changePause(true);
+    this.pause = this.pause ? false : true;
   }
 
   toggleVolume() {
-    this.volume = this.volume ? 0 : 100
-    this.playerService.changeVolume(this.volume)
+    this.volume = this.volume ? 0 : 100;
+    this.playerService.changeVolume(this.volume);
   }
 
   nextTrack() {
-    this.playerService.changePlaying(true)
+    this.playerService.changePlaying(true);
   }
 
   playAgain(boolean: boolean) {
-
-
-    this.playerService.startOver(boolean)
+    this.playerService.startOver(boolean);
   }
 
-
-
-
-  // new interface of TrackModel
-  tracks: TrackModel[] = []
-
-
-
-
-
-
-
-
-  ngDoCheck() {
-
-    this.tracks = this.trackService.getPlaylist()
-
+  toggleFullscreen(boolean: boolean) {
+    this.playerService.changeFullscreen(boolean);
   }
-
 }

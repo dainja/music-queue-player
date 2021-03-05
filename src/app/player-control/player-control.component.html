@@ -1,75 +1,85 @@
 <div
-    class="playlist-controls"
-    *ngIf="tracks?.length"
+  class="playlist-controls"
+  *ngIf="tracks?.length"
 >
+  <div class="fs-container">
+
+    <button
+      mat-flat-icon
+      class="fullscreen"
+      (click)="toggleFullscreen()"
+    >fullscreen</button>
+  </div>
+  <div class="controller-container">
 
     <div
-        class="repeat small"
-        (click)="playAgain(true)"
+      class="repeat small"
+      (click)="playAgain(true)"
     >
-        <img
-            src="../assets/svg/previous.svg"
-            alt=""
-        >
+      <img
+        src="../assets/svg/previous.svg"
+        alt=""
+      >
     </div>
     <div
-        class="play medium"
-        (click)="togglePause()"
+      class="play medium"
+      (click)="togglePause()"
     >
+      <img
+        *ngIf="pause == false; else elsePause"
+        src="../assets/svg/play-btn.svg"
+        alt=""
+      >
+      <ng-template #elsePause>
         <img
-            *ngIf="pause == false; else elsePause"
-            src="../assets/svg/play-btn.svg"
-            alt=""
+          #elsePause
+          src="../assets/svg/pause-button.svg"
+          alt=""
         >
-        <ng-template #elsePause>
-            <img
-                #elsePause
-                src="../assets/svg/pause-button.svg"
-                alt=""
-            >
-        </ng-template>
+      </ng-template>
     </div>
     <div
-        class="next small"
-        (click)="nextTrack()"
+      class="next small"
+      (click)="nextTrack()"
     >
-        <img
-            src="../assets/svg/skip-button.svg"
-            alt=""
-        >
+      <img
+        src="../assets/svg/skip-button.svg"
+        alt=""
+      >
     </div>
+  </div>
+  <div class="volume-container">
     <div
-        class="vol small"
-        (click)="toggleVolume()"
+      class="vol small"
+      (click)="toggleVolume()"
     >
+      <img
+        *ngIf="volume > 0; else elseVolume"
+        src="../assets/svg/volume.svg"
+        alt=""
+      >
+      <ng-template #elseVolume>
         <img
-            *ngIf="volume > 0; else elseVolume"
-            src="../assets/svg/volume.svg"
-            alt=""
+          #elseVolume
+          src="../assets/svg/mute.svg"
+          alt=""
         >
-        <ng-template #elseVolume>
-            <img
-                #elseVolume
-                src="../assets/svg/mute.svg"
-                alt=""
-            >
-        </ng-template>
-
-
+      </ng-template>
     </div>
+  </div>
 </div>
 <div
-    class="progress-container"
-    *ngIf="tracks?.length"
+  class="progress-container"
+  *ngIf="tracks?.length"
 >
-    <div class="progress">
-        <div
-            class="progress-bar progress-bar-striped"
-            role="progressbar"
-            [style.width]="trackService.progress + '%'"
-            (aria-valuenow)="trackService.progress"
-            aria-valuemin="0"
-            aria-valuemax="100"
-        ></div>
-    </div>
+  <div class="progress">
+    <div
+      class="progress-bar progress-bar-striped"
+      role="progressbar"
+      [style.width]="trackService.progress + '%'"
+      (aria-valuenow)="trackService.progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    ></div>
+  </div>
 </div>

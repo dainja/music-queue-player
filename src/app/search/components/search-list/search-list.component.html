@@ -21,9 +21,9 @@
           <div class="track-meta">
             <div
               class="yt-artist"
+              [innerHTML]="video.title"
               (click)="add(video.videoId, video.title, video.duration, video.thumbnail);"
-            >{{ video.title
-              }}</div>
+            ></div>
             <div class="yt-channel">
               <a
                 [href]="video.videoUrl"

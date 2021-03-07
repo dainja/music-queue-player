@@ -34,7 +34,7 @@
       <!-- insert searchlist here -->
 
       <div class="row">
-        <div class="col playlist-container mr-2">
+        <div class="col-sm-12 col-md-5 col-lg-6 playlist-container mr-2">
           <div class="playlist">
             <app-music-player></app-music-player>
 
@@ -43,7 +43,11 @@
             <app-music-playlist></app-music-playlist>
           </div>
         </div>
-        <div class="col search-container">
+        <div *ngIf="mobile"
+          style="margin-top: 3rem; width: 100%; background-color: #fff; border-bottom: 1px solid black;">
+          <p style="text-align: center; font-weight: bold;">Search Results</p>
+        </div>
+        <div class="col-md col-lg search-container">
           <app-search-list *ngIf="!loading" [videos]="videos"></app-search-list>
         </div>
       </div>

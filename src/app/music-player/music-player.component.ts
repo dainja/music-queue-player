@@ -1,6 +1,7 @@
 import {
   Component,
   DoCheck,
+  HostListener,
   Injectable,
   OnDestroy,
   OnInit,
@@ -11,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { TrackModel } from '../shared/models/track.interface';
 import { PlayerService } from '../shared/services/player.service';
 import { TrackService } from '../shared/services/track.service';
+
 
 @Injectable({
   providedIn: 'root',
@@ -46,19 +48,29 @@ export class MusicPlayerComponent implements OnInit, OnDestroy, DoCheck {
   // greate property track duration
   trackDuration;
 
-  // functions to return dimensions, will be used for responsiveness later
+
+  // below responsiveness only works with hostlistener
+  screenHeight: number;
+  screenWidth: number;
+  // responsive functions for iframe
   videoWidth() {
-    return '474px';
+return document.getElementById('player-container').clientWidth
   }
   videoHeight() {
-    return '267px';
+    return '300';
   }
-
+  // hostlistener for listening to screensize changes
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.screenHeight = window.innerHeight;
+        this.screenWidth = window.innerWidth;
+        // console.log(this.screenHeight, this.screenWidth);
+  }
   // imports
   constructor(
     private trackService: TrackService,
     private playerService: PlayerService
-  ) { }
+    ){  }
 
   // unsubscribes
   ngOnDestroy(): void {

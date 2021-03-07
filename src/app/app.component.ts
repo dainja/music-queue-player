@@ -18,6 +18,7 @@ export class AppComponent {
   videos: Video[] = [];
   roomId: string = '';
   rooms: string[];
+  mobile = false;
 
   // imports
   constructor(
@@ -35,6 +36,11 @@ export class AppComponent {
       .subscribe((docs: any) => {
         this.rooms = docs.map((doc) => doc.room);
       });
+
+      // add search results heading in html below playlist
+      if (document.body.offsetWidth < 767) {
+        this.mobile = true
+      }
   }
 
   // search handle for the search input

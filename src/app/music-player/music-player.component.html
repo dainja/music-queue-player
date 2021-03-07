@@ -1,14 +1,6 @@
-<div class="player">
-  <youtube-player
-    #ytIframe
-    id="ytIframe"
-    *ngIf="currentTrack"
-    [videoId]="currentTrack.id"
-    class="centered"
-    [width]="videoWidth()"
-    [height]="videoHeight()"
-    suggestedQuality="highres"
-    [playerVars]="{autoplay: 1, controls: 0, iv_load_policy: 3,showinfo: 0, modestbranding: 1, start: 0}"
-    (stateChange)="onStateChange($event)"
-  ></youtube-player>
+<div id="player-container">
+  <youtube-player #ytIframe id="ytIframe" *ngIf="currentTrack" [videoId]="currentTrack.id" class="centered"
+    [width]="videoWidth()" [height]="videoHeight()" suggestedQuality="highres"
+    [playerVars]="{autoplay: 0, controls: 0, iv_load_policy: 3,showinfo: 0, modestbranding: 1, start: 0}"
+    (stateChange)="onStateChange($event)"></youtube-player>
 </div>

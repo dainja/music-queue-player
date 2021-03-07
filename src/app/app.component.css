@@ -17,7 +17,7 @@
   background-image: url(src/assets/iheartmusic.png);
   background-repeat: no-repeat;
   background-size: 30%;
-  background-position-y: 50%;
+  background-position-y: 65%;
   background-position-x: 90%;
 }
 
@@ -113,15 +113,15 @@
 
 .search-container {
   padding: 0;
-  flex: 3;
+  /* flex: 3; */
 }
 
 .playlist-container {
-  flex: 2 1 35px;
+  /* flex: 2 1 35px; */
   padding: 0;
   background: #fff;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .playlist-controls {
@@ -177,6 +177,7 @@
 .noRoom {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .create-btn {

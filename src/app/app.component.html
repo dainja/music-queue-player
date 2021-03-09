@@ -1,8 +1,5 @@
 <div class="container my-5 px-0">
-  <div
-    class="yesRoom"
-    *ngIf="trackService.room"
-  >
+  <div class="yesRoom" *ngIf="trackService.room">
     <div class="col px-0">
       <div class="row">
         <div class="top-container text-white">
@@ -16,23 +13,20 @@
                   Welcome to {{ trackService.room }}'s Party
                 </h3>
                 <p>Search for a track and add it to the playlist.</p>
-                <button
-                  class="btn btn-danger"
-                  (click)="trackService.leaveRoom()"
-                >
+                <button class="btn btn-danger" (click)="trackService.leaveRoom()">
                   Leave Room
                 </button>
               </div>
             </div>
 
-            <div class="col artist-container">
+            <!-- <div class="col artist-container">
               <div class="artist">
                 <h2 class="artist-name"></h2>
               </div>
               <div class="title">
                 <p class="artist-title"></p>
               </div>
-            </div>
+            </div> -->
           </div>
           <app-search-input (search)="handleSearch($event)"></app-search-input>
         </div>
@@ -40,7 +34,11 @@
       <!-- insert searchlist here -->
 
       <div class="row">
+<<<<<<< HEAD
         <div class="col playlist-container">
+=======
+        <div class="col-sm-12 col-md-5 col-lg-6 playlist-container mr-2">
+>>>>>>> a49cf4e24896bc23f3b610aad2fd37067f125a6a
           <div class="playlist">
             <app-music-player></app-music-player>
 
@@ -49,25 +47,28 @@
             <app-music-playlist></app-music-playlist>
           </div>
         </div>
-        <div class="col search-container">
-          <app-search-list
-            *ngIf="!loading"
-            [videos]="videos"
-          ></app-search-list>
+        <div *ngIf="mobile"
+          style="margin-top: 3rem; width: 100%; background-color: #fff; border-bottom: 1px solid black;">
+          <p style="text-align: center; font-weight: bold;">Search Results</p>
+        </div>
+        <div class="col-md col-lg search-container">
+          <app-search-list *ngIf="!loading" [videos]="videos"></app-search-list>
         </div>
       </div>
     </div>
   </div>
-  <div
-    class="top-container-noRoom text-white"
-    *ngIf="!trackService.room"
-  >
+  <div class="top-container-noRoom text-white" *ngIf="!trackService.room">
     <div class="bg1"></div>
     <div class="bg2"></div>
     <div class="bg3"></div>
     <div class="noRoom-container">
       <div class="welcome">
-        <h3 class="font-weight-bold">LGND MUSIC QUEUE PLAYER</h3>
+        <div class="header">
+          <h3 class="font-weight-bold">LGND MUSIC QUEUE PLAYER</h3>
+          <div class="bg-logo">
+            <img src="/assets/iheartmusic.png" alt="">
+          </div>
+        </div>
         <br />
         <p>
           <span class="font-weight-bold">Simple solution</span> to major
@@ -82,10 +83,7 @@
       </div>
 
       <div class="noRoom">
-        <div
-          class="card text-white bg-secondary mb-3 mx-3"
-          style="max-width: 18rem"
-        >
+        <div class="card text-white bg-secondary mb-3 mx-3" style="max-width: 18rem">
           <div class="card-header">
             <h5 class="m-0">Create Room</h5>
           </div>
@@ -95,28 +93,14 @@
               your friends to join.
             </p>
           </div>
-          <input
-            id="party"
-            name="party"
-            placeholder="Party name..."
-            type="text"
-            [(ngModel)]="roomId"
-            class="form-control"
-            style="font-size: 14px"
-            maxlength="15"
-          />
-          <button
-            mat-flat-button
-            class="create-btn text-white font-weight-bolder"
-            (click)="trackService.createRoom(roomId)"
-          >
+          <input id="party" name="party" placeholder="Party name..." type="text" [(ngModel)]="roomId"
+            class="form-control" style="font-size: 14px" maxlength="15" />
+          <button mat-flat-button class="create-btn text-white font-weight-bolder"
+            (click)="trackService.createRoom(roomId)">
             Create
           </button>
         </div>
-        <div
-          class="card text-white bg-secondary mb-3 mx-3"
-          style="max-width: 18rem"
-        >
+        <div class="card text-white bg-secondary mb-3 mx-3" style="max-width: 18rem">
           <div class="card-header">
             <h5 class="m-0">Join Room</h5>
           </div>
@@ -127,11 +111,7 @@
           </div>
           <p class="mt-2 mb-0 pl-2 font-weight-bold">Available Rooms</p>
           <div *ngFor="let room of rooms">
-            <button
-              mat-flat-button
-              class="join-btn text-white font-weight-bold"
-              (click)="trackService.joinRoom(room)"
-            >
+            <button mat-flat-button class="join-btn text-white font-weight-bold" (click)="trackService.joinRoom(room)">
               {{ room }}
             </button>
           </div>

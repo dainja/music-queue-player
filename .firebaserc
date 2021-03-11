@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "party-queue-angular": {
-      "hosting": {
-        "party-queue": [
-          "party-queue-angular"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "party-queue-angular"
+    "default": "lgnd-music-player"
   }
 }
